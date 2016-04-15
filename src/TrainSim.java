@@ -16,5 +16,7 @@ public class TrainSim {
 
         trainArr[0] = new Train(3, "west", 0);
 
+        agenda.add(new PassengerMaker(30), 10);
+
     }
 }
