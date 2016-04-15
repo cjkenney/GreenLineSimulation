@@ -12,5 +12,27 @@ public class Train {
         stop = currentStop;
     }
 
+    public int getCars() {
+        return cars;
+    }
 
+    public void setCars(int cars) {
+        this.cars = cars;
+    }
+
+    public String getDir() {
+        return dir;
+    }
+
+    public void setDir(String dir) {
+        this.dir = dir;
+    }
+
+    public int getStop() {
+        return stop;
+    }
+
+    public void setStop(int stop) {
+        this.stop = stop;
+    }
 }

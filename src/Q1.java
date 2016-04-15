@@ -41,6 +41,15 @@ public class Q1 implements Q {
         return size;
     }
 
+    //added methods for GreenLineSim
+
+    public boolean isFull() {
+        if (size == 50){  //max car capacity is 50
+            return true;
+        }
+        return false;
+    }
+
     private int size;
     private N front;
     private N rear;
