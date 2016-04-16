@@ -30,13 +30,8 @@ public class Stop {
 
     }
 
-    public void printPeople(){
-        for (int i = 0; i < west.length(); i++){
-            west.remove().toString();
-        }
-        for (int i = 0; i < east.length(); i++){
-            east.remove().toString();
-        }
+    public Object removePassenger(){
+        return west.remove();
     }
 
     public void createPassenger(){

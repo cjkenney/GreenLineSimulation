@@ -8,9 +8,10 @@ public class TrainSim {
 
     public static void main(String[] args) {
 
-        Train[] trainArr = new Train[23];
+        int numberOfTrains = 10; //1 - 23
+        int numOfCars = 3; //1 - 3
 
-        int numberOfTrains = 10;
+        Train[] trainArr = new Train[numberOfTrains - 1];
 
 
         Q1 west = new Q1();
@@ -40,6 +41,15 @@ public class TrainSim {
         stopArr[21] = new Stop("Central", 21, west, east, -10);
         stopArr[22] = new Stop("Union Depot", 22, west, east, -10);
 
+        //westbound trains
+        for (int i = 0; i < numberOfTrains / 2; i++){
+            trainArr[i] = new Train(numOfCars, 0, i);
+        }
+        //eastbound trains
+        for (int i = 0; i < numberOfTrains - numberOfTrains / 2; i++){
+            trainArr[i] = new Train(numOfCars, 1, i);
+        }
+
         for (int i = 0; i <= 22; i++){
             stopArr[i].createPassenger();
         }
@@ -47,7 +57,7 @@ public class TrainSim {
 
         //agenda.add(new PassengerMaker(), 10);
 
-        while (agenda.getCurrentTime() <= 5000){
+        while (agenda.getCurrentTime() <= 100){
             agenda.remove().run();
         }
 
