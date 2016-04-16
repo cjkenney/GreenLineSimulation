@@ -56,7 +56,7 @@ public class PassengerMaker implements Event {
     private int destinationGenerate(){
         prob = intRandomInterval(1, 69);
 
-        System.out.println(prob);
+        //System.out.println(prob);
 
         if (prob >= 1 && prob <= 50){  //10 downtown stops, 5 times more likely than other stops
 
@@ -129,6 +129,7 @@ public class PassengerMaker implements Event {
         Passenger newPassenger = new Passenger(TrainSim.agenda.getCurrentTime(),
                 departure, destination);
         newPassenger.printInfo();
+        newPassenger.
 
         //schedule new PassengerMaker according to intervalModifier
         TrainSim.agenda.add(this, interval + arrivalModifier() * interval);
