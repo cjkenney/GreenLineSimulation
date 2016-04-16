@@ -44,8 +44,6 @@ public class TrainSim {
         }
 
 
-        trainArr[0] = new Train(3, "west", 0);
-
         //agenda.add(new PassengerMaker(), 10);
 
         while (agenda.getCurrentTime() <= 1000){
