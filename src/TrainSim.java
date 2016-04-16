@@ -51,5 +51,7 @@ public class TrainSim {
             agenda.remove().run();
         }
 
+        Statistics.displayStats();
+
     }
 }
