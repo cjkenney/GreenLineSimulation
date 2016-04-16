@@ -18,11 +18,20 @@ public class Stop {
     }
 
     public void add(Passenger p){
+        if (p.getDirection() == 0){
+            west.add(p);
+        }
+        else if (p.getDirection() == 1){
+            east.add(p);
+        }
+        else{
+            System.out.println("Stop class add() error");
+        }
 
     }
 
     public void createPassenger(){
-        TrainSim.agenda.add(new PassengerMaker(id, interval), 0);
+        TrainSim.agenda.add(new PassengerMaker(id, interval, null), 0);
     }
 
     public int numPeople(){

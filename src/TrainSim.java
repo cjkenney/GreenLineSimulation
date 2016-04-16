@@ -4,6 +4,7 @@
 public class TrainSim {
 
     static PQ agenda = new PQ();
+    static Stop[] stopArr = new Stop[23];
 
     public static void main(String[] args) {
 
@@ -11,7 +12,7 @@ public class TrainSim {
 
         int numberOfTrains = 10;
 
-        Stop[] stopArr = new Stop[23];
+
         Q1 west = new Q1();
         Q1 east = new Q1();
 

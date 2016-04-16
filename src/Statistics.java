@@ -3,7 +3,7 @@
  */
 public class Statistics {
 
-    public void displayStats(){
+    public static void displayStats(){
 
     }
 }

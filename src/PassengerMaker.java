@@ -17,11 +17,13 @@ public class PassengerMaker implements Event {
     int prob;  //probability used with arrival interval (see comments above)
     int departure;
     int destination;
+    Stop stopIndex;
 
-    public PassengerMaker(int departureStop, int averageInterval){
+    public PassengerMaker(int departureStop, int averageInterval, Stop s){
         departure = departureStop;
         destination = departureStop;
         interval = averageInterval;
+        stopIndex = s;
     }
 
     private double arrivalModifier(){
@@ -129,7 +131,11 @@ public class PassengerMaker implements Event {
         Passenger newPassenger = new Passenger(TrainSim.agenda.getCurrentTime(),
                 departure, destination);
         newPassenger.printInfo();
-        newPassenger.
+
+        TrainSim.stopArr[departure].add(newPassenger);
+
+        //System.out.println(TrainSim.stopArr[departure]);
+
 
         //schedule new PassengerMaker according to intervalModifier
         TrainSim.agenda.add(this, interval + arrivalModifier() * interval);

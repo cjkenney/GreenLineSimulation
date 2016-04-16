@@ -24,6 +24,10 @@ public class Passenger {
         }
     }
 
+    public int getDirection(){
+        return direction;
+    }
+
     public void printInfo() {
         System.out.println("Arrival time: " + arrivalTime + " departureStop: " + depart + " destination: " + dest);
     }
