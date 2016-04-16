@@ -47,7 +47,7 @@ public class TrainSim {
 
         //agenda.add(new PassengerMaker(), 10);
 
-        while (agenda.getCurrentTime() <= 1000){
+        while (agenda.getCurrentTime() <= 5000){
             agenda.remove().run();
         }
 

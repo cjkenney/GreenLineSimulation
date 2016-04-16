@@ -5,8 +5,9 @@ public class Statistics {
 
     public static void displayStats(){
         for (int i = 0; i <= 22; i ++){
-            System.out.println(TrainSim.stopArr[i]);
-            System.out.println(TrainSim.stopArr[i].numPeople() + " at Stop: " + i);
+            //TrainSim.stopArr[i].printPeople();
+            //System.out.println(TrainSim.stopArr[i]);
+            System.out.println(TrainSim.stopArr[i].numPeople() + " at Stop " + i);
         }
     }
 }
