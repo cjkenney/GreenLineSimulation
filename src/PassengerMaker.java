@@ -121,7 +121,6 @@ public class PassengerMaker implements Event {
 
     @Override
     public void run() {
-        //stopnum = destinationGenerate();                                     //
 
         //makes sure passengers don't have duplicate starting points and departures
         while (destination == departure){
@@ -134,7 +133,6 @@ public class PassengerMaker implements Event {
 
         TrainSim.stopArr[departure].add(newPassenger);
 
-        //System.out.println(TrainSim.stopArr[departure]);
 
 
         //schedule new PassengerMaker according to intervalModifier

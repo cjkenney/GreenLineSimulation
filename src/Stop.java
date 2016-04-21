@@ -6,7 +6,7 @@ public class Stop {
     Q1 west = new Q1();
     Q1 east = new Q1();
     int id;
-    int interval = 30; //average arrival interval
+    int interval = 30; //average arrival interval, changes based on downtown/campus stops via intervalModifier
 
     public Stop(String stopName, int idNum, Q1 westQ, Q1 eastQ, int intervalModifier){
         name = stopName;
@@ -14,7 +14,7 @@ public class Stop {
 //        east = eastQ;
         id = idNum;
 
-        interval += intervalModifier;
+        interval += intervalModifier;  //-10 for downtown stops, -5 for campus stops
     }
 
     public void add(Passenger p){

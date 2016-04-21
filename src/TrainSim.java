@@ -8,10 +8,16 @@ public class TrainSim {
 
     public static void main(String[] args) {
 
-        int numberOfTrains = 10; //1 - 23
-        int numOfCars = 3; //1 - 3
+        int numberOfTrains = 11; //range 1 to 23
+        int numOfCars = 1; //range 1 to 3
 
-        Train[] trainArr = new Train[numberOfTrains - 1];
+        int eastBoundTrains = (int) Math.ceil( (double) numberOfTrains / 2.0);
+        int westBoundTrains = numberOfTrains - eastBoundTrains;
+
+        System.out.println(eastBoundTrains + " east bound trains");
+        System.out.println(westBoundTrains + " west bound trains");
+
+        Train[] trainArr = new Train[numberOfTrains];
 
 
         Q1 west = new Q1();
@@ -41,15 +47,94 @@ public class TrainSim {
         stopArr[21] = new Stop("Central", 21, west, east, -10);
         stopArr[22] = new Stop("Union Depot", 22, west, east, -10);
 
-        //westbound trains
-        for (int i = 0; i < numberOfTrains / 2; i++){
-            trainArr[i] = new Train(numOfCars, 0, i);
+        int eastSpacer = 0;
+        int westSpacer = 0;
+
+        //space out trains evenly
+
+        if (eastBoundTrains % 2 == 0){
+            eastSpacer = (int) Math.ceil(23.0 / (double) eastBoundTrains);
         }
-        //eastbound trains
-        for (int i = 0; i < numberOfTrains - numberOfTrains / 2; i++){
-            trainArr[i] = new Train(numOfCars, 1, i);
+        else if (eastBoundTrains % 2 != 0){
+            eastSpacer = 23 / eastBoundTrains;
+        }
+        else {
+            System.out.println("error TrainSim eastSpacer");
+            eastSpacer = 0;
         }
 
+        if (westBoundTrains != 0  && westBoundTrains % 2 == 0){
+            westSpacer = (int) Math.ceil(23.0 / (double) westBoundTrains);
+        }
+        else if (westBoundTrains != 0  && westBoundTrains % 2 != 0){
+            westSpacer = 23 / westBoundTrains;
+        }
+
+        if (numberOfTrains >= 19){
+            eastSpacer = 2;
+            westSpacer = 2;
+        }
+
+        System.out.println("eastSpacer " + eastSpacer);
+        System.out.println("westSpacer " + westSpacer);
+
+        int index = 0;  //index of trainArr
+        int j = 0;  //used for stop number
+
+        //-----------------------------Train(numOfCars, direction, currentStop)--------------------
+        //--------------------------------------------------^(0 = west, 1 = east)------------------
+
+        //eastbound trains
+        while (index < eastBoundTrains){
+            //System.out.println(index + " " + j);
+            trainArr[index] = new Train(numOfCars, 1, j);
+
+            j += eastSpacer;
+            index++;
+        }
+
+        j = 22;  //set stop number to decrease from east stations
+
+        //westbound trains
+        while (index < numberOfTrains){
+            //System.out.println(index + " " + j);
+            trainArr[index] = new Train(numOfCars, 0, j);
+
+            j -= westSpacer;
+            index++;
+        }
+
+//        for (int i = 0; i < eastBoundTrains; i += eastBoundTrains / 23){
+//            System.out.println(index + " " + i);
+//            trainArr[index] = new Train(numOfCars, 1, i);
+//            index ++;
+//        }
+
+
+
+//        //eastbound trains
+//        for (int i = 0; i < numberOfTrains / 2; i ++){
+//            trainArr[i] = new Train(numOfCars, 1, i);
+//        }
+//        //westbound trains
+//        for (int i = 22; i > numberOfTrains - numberOfTrains / 2; i--){
+//            trainArr[trainArr.length - 1] = new Train(numOfCars, 0, trainArr.length - 1);
+//        }
+        boolean err = false;
+        System.out.println();
+        for (int i = 0; i < trainArr.length; i++){
+            System.out.println("Train: " + i + trainArr[i].getInfo());
+            if (trainArr[i].getStop() > 22 || trainArr[i].getStop() < 0){
+                err = true;
+            }
+        }
+
+        if (err){
+            System.out.println("ERROR");
+        }
+
+
+        //adds new PassengerMaker to each stop
         for (int i = 0; i <= 22; i++){
             stopArr[i].createPassenger();
         }
@@ -57,11 +142,11 @@ public class TrainSim {
 
         //agenda.add(new PassengerMaker(), 10);
 
-        while (agenda.getCurrentTime() <= 100){
+        while (agenda.getCurrentTime() <= 10){
             agenda.remove().run();
         }
 
-        Statistics.displayStats();
+        //Statistics.displayStats();
 
     }
 }
