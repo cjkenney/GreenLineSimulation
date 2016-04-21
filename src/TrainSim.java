@@ -5,11 +5,15 @@ public class TrainSim {
 
     static PQ agenda = new PQ();
     static Stop[] stopArr = new Stop[23];
+    static Train[] trainArr;
 
     public static void main(String[] args) {
 
-        int numberOfTrains = 11; //range 1 to 23
+        int numberOfTrains = 23; //range 1 to 23
         int numOfCars = 1; //range 1 to 3
+
+        //create static train Array
+        trainArr = new Train[numberOfTrains];
 
         int eastBoundTrains = (int) Math.ceil( (double) numberOfTrains / 2.0);
         int westBoundTrains = numberOfTrains - eastBoundTrains;
@@ -17,7 +21,7 @@ public class TrainSim {
         System.out.println(eastBoundTrains + " east bound trains");
         System.out.println(westBoundTrains + " west bound trains");
 
-        Train[] trainArr = new Train[numberOfTrains];
+        //Train[] trainArr = new Train[numberOfTrains];
 
 
         Q1 west = new Q1();
@@ -84,10 +88,25 @@ public class TrainSim {
         //-----------------------------Train(numOfCars, direction, currentStop)--------------------
         //--------------------------------------------------^(0 = west, 1 = east)------------------
 
-        //eastbound trains
-        while (index < eastBoundTrains){
-            //System.out.println(index + " " + j);
-            trainArr[index] = new Train(numOfCars, 1, j);
+        Train tempTrain = null;
+
+        //Eastbound Trains
+
+        while (index < eastBoundTrains) {
+
+            //CREATE TRAIN, if train is created at turnaround, direction is switched
+            if (j != 22){
+                tempTrain = new Train(numOfCars, 1, j, j+1);
+                trainArr[index] = tempTrain;
+            }
+            else if (j == 22){
+                tempTrain = new Train(numOfCars, 0, j, 21);
+                trainArr[index] = tempTrain;
+            }
+
+            //ADD TRAIN TO STOP
+            stopArr[j].addTrain(tempTrain);
+
 
             j += eastSpacer;
             index++;
@@ -95,31 +114,27 @@ public class TrainSim {
 
         j = 22;  //set stop number to decrease from east stations
 
-        //westbound trains
+        //Westbound Trains
+
         while (index < numberOfTrains){
-            //System.out.println(index + " " + j);
-            trainArr[index] = new Train(numOfCars, 0, j);
+
+            //CREATE TRAIN, if train is created at turnaround, direction is switched
+            if (j != 0){
+                tempTrain = new Train(numOfCars, 0, j, j-1);
+                trainArr[index] = tempTrain;
+            }
+            else if (j == 0){
+                tempTrain = new Train(numOfCars, 1, j, 1);
+                trainArr[index] = tempTrain;
+            }
+
+            //ADD TRAIN TO STOP
+            stopArr[j].addTrain(tempTrain);
 
             j -= westSpacer;
             index++;
         }
 
-//        for (int i = 0; i < eastBoundTrains; i += eastBoundTrains / 23){
-//            System.out.println(index + " " + i);
-//            trainArr[index] = new Train(numOfCars, 1, i);
-//            index ++;
-//        }
-
-
-
-//        //eastbound trains
-//        for (int i = 0; i < numberOfTrains / 2; i ++){
-//            trainArr[i] = new Train(numOfCars, 1, i);
-//        }
-//        //westbound trains
-//        for (int i = 22; i > numberOfTrains - numberOfTrains / 2; i--){
-//            trainArr[trainArr.length - 1] = new Train(numOfCars, 0, trainArr.length - 1);
-//        }
         boolean err = false;
         System.out.println();
         for (int i = 0; i < trainArr.length; i++){
@@ -130,7 +145,7 @@ public class TrainSim {
         }
 
         if (err){
-            System.out.println("ERROR");
+            System.out.println("ERROR INVALID STOP");
         }
 
 
@@ -146,7 +161,7 @@ public class TrainSim {
             agenda.remove().run();
         }
 
-        //Statistics.displayStats();
+        Statistics.displayStats();
 
     }
 }

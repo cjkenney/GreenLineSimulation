@@ -47,7 +47,7 @@ public class PassengerMaker implements Event {
             return -.5;
         }
         else if (prob >= 91 && prob <= 100){
-            return .5;
+            return -.75;
         }
         else{
             System.out.print("arrivalModifier Error");
@@ -129,11 +129,10 @@ public class PassengerMaker implements Event {
 
         Passenger newPassenger = new Passenger(TrainSim.agenda.getCurrentTime(),
                 departure, destination);
+
         newPassenger.printInfo();
 
-        TrainSim.stopArr[departure].add(newPassenger);
-
-
+        TrainSim.stopArr[departure].addPassenger(newPassenger);
 
         //schedule new PassengerMaker according to intervalModifier
         TrainSim.agenda.add(this, interval + arrivalModifier() * interval);
