@@ -11,6 +11,12 @@
 
 public class PassengerEvent implements Event {
 
+    Passenger p;
+
+    public PassengerEvent(Passenger passenger){
+        p = passenger;
+    }
+
     @Override
     public void run() {
 

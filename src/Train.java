@@ -23,6 +23,10 @@ public class Train {
         nextStop = nextStopPtr;
     }
 
+    public TrainCar[] getCarArr(){
+        return carArr;
+    }
+
     public int getStop(){
         return stop;
     }
@@ -55,8 +59,6 @@ public class Train {
                 nextStop = 21;
             }
         }
-
-
     }
 
     public String getInfo(){

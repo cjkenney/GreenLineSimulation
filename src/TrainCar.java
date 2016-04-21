@@ -24,6 +24,14 @@ public class TrainCar {
         }
     }
 
+    public int numOfPassengers(){
+        return passQ.length();
+    }
+
+    public Passenger removePassenger(){
+        return (Passenger) passQ.remove();
+    }
+
     public Passenger removePassenger(Passenger p){
         if (passQ.length() == 0){
             return null;

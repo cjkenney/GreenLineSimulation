@@ -28,6 +28,14 @@ public class Passenger {
         return direction;
     }
 
+    public int getDestination(){
+        return dest;
+    }
+
+    public int getDepartureStop(){
+        return depart;
+    }
+
     public void printInfo() {
         System.out.println("Arrival time: " + arrivalTime + " departureStop: " + depart + " destination: " + dest);
     }
