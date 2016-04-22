@@ -161,11 +161,12 @@ public class TrainSim {
 
         //agenda.add(new PassengerMaker(), 10);
 
-        while (agenda.getCurrentTime() <= 100000){
+        while (agenda.getCurrentTime() <= 1000){
             agenda.remove().run();
         }
 
         Statistics.displayStats();
+        System.out.println(Statistics.passengersProcessed);
 
     }
 }

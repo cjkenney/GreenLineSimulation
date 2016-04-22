@@ -52,7 +52,7 @@ public class Passenger {
     }
 
     public void printInfo() {
-        System.out.println("Arrival time: " + arrivalTime + " departureStop: " + depart + " destination: " + dest);
+        System.out.println(this + " Arrival time: " + arrivalTime + " departureStop: " + depart + " destination: " + dest);
     }
 
 }

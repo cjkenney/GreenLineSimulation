@@ -8,6 +8,8 @@ public class TrainEvent implements Event {
     Passenger tempPass;
     int numPassenger = 0;
 
+    Passenger p;
+
     Stop currentStop;
     int currentStopId;
 
@@ -16,6 +18,7 @@ public class TrainEvent implements Event {
     int i;
 
     public TrainEvent(Train t){
+        waitModifier = 0;
         tempTrain = t;
         tempCarArr = tempTrain.getCarArr();
         currentStop = TrainSim.stopArr[tempTrain.getStop()];
@@ -38,6 +41,7 @@ public class TrainEvent implements Event {
 
                 //checks if Passenger destination matches current Stop
                 if (tempPass.getDestination() == currentStopId){
+                    System.out.println("Passenger getting off. " + tempPass.getDestination() + " = " + currentStopId);
                     tempPass.setFinalTime(TrainSim.agenda.getCurrentTime());
                     Statistics.analyzePassenger(tempPass); //tempPass isn't added back to TrainCar Queue, processed for statistics
                     waitModifier += 2;
@@ -52,13 +56,17 @@ public class TrainEvent implements Event {
         }
 
         //Passengers get on train
-
         //Direction: 0 = westbound; 1 = eastbound
 
         //Westbound Train, also checks if Westbound Queue is empty
         if (tempTrain.getDirection() == 0  && currentStop.getWestLength() > 0){
 
+            System.out.println("Checking for passengers");
+
+
+
             numPassenger = currentStop.getWestLength(); //number of Passengers in West Queue
+            System.out.println("NUMBER OF PASSENGERS AT STOP "+ currentStop + ": " + numPassenger);
 
             i = 0;
             while (numPassenger > 0){
@@ -66,7 +74,9 @@ public class TrainEvent implements Event {
                     break;
                 }
                 if (!tempCarArr[i].isFull()){
-                    tempCarArr[i].addPassenger(currentStop.removeWestPassenger());
+                    p = currentStop.removeWestPassenger();
+                    System.out.println("Adding passenger " + p);
+                    tempCarArr[i].addPassenger(p);
                     waitModifier += 1;
                     numPassenger--;
                 }
@@ -79,12 +89,17 @@ public class TrainEvent implements Event {
         //Eastbound Train, also checks if Eastbound Queue is empty
         else if (tempTrain.getDirection() == 1  && currentStop.getEastLength() > 0){
 
-            numPassenger = currentStop.getWestLength(); //number of Passengers in West Queue
+            numPassenger = currentStop.getEastLength(); //number of Passengers in West Queue
 
             i = 0;
             while (numPassenger > 0){
+                if (i == tempTrain.getCars()){
+                    break;
+                }
                 if (!tempCarArr[i].isFull()){
-                    tempCarArr[i].addPassenger(currentStop.removeEastPassenger());
+                    p = currentStop.removeEastPassenger();
+                    System.out.println("Adding passenger " + p);
+                    tempCarArr[i].addPassenger(p);
                     numPassenger--;
                 }
                 else if (tempCarArr[i].isFull() && i < tempTrain.getCars()){
@@ -105,6 +120,5 @@ public class TrainEvent implements Event {
         tempTrain.setCurrentStop(tempTrain.getNextStop());
         tempTrain.generateNextStop();
         TrainSim.agenda.add(new TrainEvent(tempTrain), 180 + waitModifier);
-
     }
 }

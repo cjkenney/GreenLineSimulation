@@ -130,11 +130,16 @@ public class PassengerMaker implements Event {
         Passenger newPassenger = new Passenger(TrainSim.agenda.getCurrentTime(), 0.0,
                 departure, destination);
 
-        //newPassenger.printInfo();
+        newPassenger.printInfo();
 
         TrainSim.stopArr[departure].addPassenger(newPassenger);
+//        System.out.println("Added " + newPassenger + " to Stop " + departure);
+//        System.out.println("westLength: " +TrainSim.stopArr[departure].getWestLength());
+//        System.out.println("eastLength: " +TrainSim.stopArr[departure].getEastLength());
+
+
 
         //schedule new PassengerMaker according to intervalModifier
-        TrainSim.agenda.add(this, interval + arrivalModifier() * interval);
+        TrainSim.agenda.add(new PassengerMaker(departure, interval, stopIndex), interval + arrivalModifier() * interval);
     }
 }
