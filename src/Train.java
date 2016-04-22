@@ -23,8 +23,13 @@ public class Train {
         nextStop = nextStopPtr;
     }
 
+
     public TrainCar[] getCarArr(){
         return carArr;
+    }
+
+    public void setCurrentStop(int s){
+        stop = s;
     }
 
     public int getStop(){
@@ -34,6 +39,8 @@ public class Train {
     public int getNextStop(){
         return nextStop;
     }
+
+    public int getDirection() { return dir; }
 
     public void generateNextStop(){
         //sets next stop. If train is at a turnaround, changes direction and sets next stop accordingly
@@ -89,4 +96,7 @@ public class Train {
         return cars;
     }
 
+    public void startTrain() {
+        TrainSim.agenda.add(new TrainEvent(this), 0);
+    }
 }

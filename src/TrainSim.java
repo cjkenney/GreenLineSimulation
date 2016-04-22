@@ -9,7 +9,7 @@ public class TrainSim {
 
     public static void main(String[] args) {
 
-        int numberOfTrains = 23; //range 1 to 23
+        int numberOfTrains = 1; //range 1 to 23
         int numOfCars = 1; //range 1 to 3
 
         //create static train Array
@@ -154,10 +154,14 @@ public class TrainSim {
             stopArr[i].createPassenger();
         }
 
+        for (int i = 0; i < numberOfTrains; i++){
+            trainArr[i].startTrain();
+        }
+
 
         //agenda.add(new PassengerMaker(), 10);
 
-        while (agenda.getCurrentTime() <= 10){
+        while (agenda.getCurrentTime() <= 100000){
             agenda.remove().run();
         }
 

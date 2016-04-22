@@ -127,10 +127,10 @@ public class PassengerMaker implements Event {
             destination = destinationGenerate();
         }
 
-        Passenger newPassenger = new Passenger(TrainSim.agenda.getCurrentTime(),
+        Passenger newPassenger = new Passenger(TrainSim.agenda.getCurrentTime(), 0.0,
                 departure, destination);
 
-        newPassenger.printInfo();
+        //newPassenger.printInfo();
 
         TrainSim.stopArr[departure].addPassenger(newPassenger);
 

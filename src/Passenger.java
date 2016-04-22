@@ -4,12 +4,15 @@
 public class Passenger {
 
     double arrivalTime;
+    double finalTime;
     int depart;
     int dest;
     int direction;  //0 = west, 1 = east
 
-    public Passenger(double t, int departureStop, int destinationStop){
+    public Passenger(double t, double fin, int departureStop, int destinationStop){
         arrivalTime = t;
+        finalTime = fin;
+
         depart = departureStop;
         dest = destinationStop;
 
@@ -22,6 +25,18 @@ public class Passenger {
         else {
             System.out.println("Passenger constructor error");
         }
+    }
+
+    public void setFinalTime(double time){
+        finalTime = time;
+    }
+
+    public double getFinalTime(){
+        return finalTime;
+    }
+
+    public double getArrivalTime() {
+        return arrivalTime;
     }
 
     public int getDirection(){

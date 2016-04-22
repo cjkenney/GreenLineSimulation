@@ -12,9 +12,10 @@
 public class PassengerEvent implements Event {
 
     Passenger p;
-
-    public PassengerEvent(Passenger passenger){
+    Train t;
+    public PassengerEvent(Passenger passenger, Train train){
         p = passenger;
+        t = train;
     }
 
     @Override

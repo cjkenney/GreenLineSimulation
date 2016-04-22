@@ -24,6 +24,10 @@ public class Stop {
         trainQ.add(t);
     }
 
+    public int getId(){
+        return id;
+    }
+
     public void addPassenger(Passenger p){
         if (p.getDirection() == 0){
             west.add(p);
@@ -37,15 +41,21 @@ public class Stop {
 
     }
 
-    public Passenger removePassenger(){
+    public Passenger removeWestPassenger(){
         return (Passenger) west.remove();
     }
+
+    public Passenger removeEastPassenger() { return (Passenger) east.remove(); }
 
     public void createPassenger(){
         TrainSim.agenda.add(new PassengerMaker(id, interval, null), 0);
     }
 
+    public int getWestLength(){ return west.length(); }
+
+    public int getEastLength(){ return east.length(); }
+
     public int numPeople(){
-        return west.length() + east.length();
+        return getWestLength() + getEastLength();
     }
 }
