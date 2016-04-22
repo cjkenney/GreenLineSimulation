@@ -3,21 +3,25 @@
  */
 public class TrainSim {
 
+    //Global Variables
     static PQ agenda = new PQ();
     static Stop[] stopArr = new Stop[23];
     static Train[] trainArr;
 
     public static void main(String[] args) {
 
+        //Vary numberOfTrains, numberOfCars, and The Load
         int numberOfTrains = 1; //range 1 to 23
         int numOfCars = 1; //range 1 to 3
 
         //create static train Array
         trainArr = new Train[numberOfTrains];
 
+        //Varied number of trains from each location so it's spaced out to get max stops
         int eastBoundTrains = (int) Math.ceil( (double) numberOfTrains / 2.0);
         int westBoundTrains = numberOfTrains - eastBoundTrains;
 
+        //Just output number of trains
         System.out.println(eastBoundTrains + " east bound trains");
         System.out.println(westBoundTrains + " west bound trains");
 
@@ -27,6 +31,10 @@ public class TrainSim {
         Q1 west = new Q1();
         Q1 east = new Q1();
 
+        //Create stop in stop array
+        //Format, NameField, west, east, are the queues associated, -10 is a downtain, -5 is a campus stop
+        //0 is a regular stop, these are just arrival modifiers due to number of people using it
+        //Downtown stops in minneapolis and saint paul on either side of the green line
         stopArr[0] = new Stop("Target Field", 0, west, east, -10);
         stopArr[1] = new Stop("Hennepin Ave", 1, west, east, -10);
         stopArr[2] = new Stop("Nicollet Mall", 2, west, east, -10);
@@ -51,6 +59,7 @@ public class TrainSim {
         stopArr[21] = new Stop("Central", 21, west, east, -10);
         stopArr[22] = new Stop("Union Depot", 22, west, east, -10);
 
+        //Spacing out the trains, calculated on next lines of code
         int eastSpacer = 0;
         int westSpacer = 0;
 
@@ -88,6 +97,8 @@ public class TrainSim {
         //-----------------------------Train(numOfCars, direction, currentStop)--------------------
         //--------------------------------------------------^(0 = west, 1 = east)------------------
 
+        //After this comment is where trains start being created
+
         Train tempTrain = null;
 
         //Eastbound Trains
@@ -99,7 +110,9 @@ public class TrainSim {
                 tempTrain = new Train(numOfCars, 1, j, j+1);
                 trainArr[index] = tempTrain;
             }
+            //Stop 22 is the last stop, so have to switch the way it's going to make sense
             else if (j == 22){
+                //j = current stop
                 tempTrain = new Train(numOfCars, 0, j, 21);
                 trainArr[index] = tempTrain;
             }
@@ -112,6 +125,8 @@ public class TrainSim {
             index++;
         }
 
+        //Now starting at westbound
+        //22 is stop 22, the last one in the east
         j = 22;  //set stop number to decrease from east stations
 
         //Westbound Trains
@@ -148,19 +163,19 @@ public class TrainSim {
             System.out.println("ERROR INVALID STOP");
         }
 
-
+        //START CREATING EVENTS
         //adds new PassengerMaker to each stop
         for (int i = 0; i <= 22; i++){
             stopArr[i].createPassenger();
         }
 
+        //Adds Events
         for (int i = 0; i < numberOfTrains; i++){
             trainArr[i].startTrain();
         }
 
 
-        //agenda.add(new PassengerMaker(), 10);
-
+        //Removes Events
         while (agenda.getCurrentTime() <= 1000){
             agenda.remove().run();
         }
