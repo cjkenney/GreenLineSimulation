@@ -61,12 +61,12 @@ public class TrainEvent implements Event {
         //Westbound Train, also checks if Westbound Queue is empty
         if (tempTrain.getDirection() == 0  && currentStop.getWestLength() > 0){
 
-            System.out.println("Checking for passengers");
+            //System.out.println("Checking for passengers");
 
 
 
             numPassenger = currentStop.getWestLength(); //number of Passengers in West Queue
-            System.out.println("NUMBER OF PASSENGERS AT STOP "+ currentStop + ": " + numPassenger);
+            //System.out.println("NUMBER OF PASSENGERS AT STOP "+ currentStop + ": " + numPassenger);
 
             i = 0;
             while (numPassenger > 0){

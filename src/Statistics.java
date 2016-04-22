@@ -22,6 +22,7 @@ public class Statistics {
         System.out.println("Arrived at Depart Stop @ " + p.getArrivalTime());
         System.out.println("Destination " + p.getDestination());
         System.out.println("Arrived at Destination Stop @ " + p.getFinalTime());
+        System.out.println("Total time waited " + (p.getFinalTime() - p.getArrivalTime()));
         System.out.println();
     }
 
