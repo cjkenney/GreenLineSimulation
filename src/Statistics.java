@@ -10,11 +10,11 @@ public class Statistics {
     //Collective Passenger Array
     private static Passenger[] passengerArray = new Passenger[100]; //Default 100, will grow if needed
 
-    public static void displayStats(){
+    public static void displayStopStats(){
         for (int i = 0; i <= 22; i ++){
             //TrainSim.stopArr[i].printPeople();
             //System.out.println(TrainSim.stopArr[i]);
-            System.out.println(TrainSim.stopArr[i].numPeople() + " at Stop " + i);
+            System.out.println(TrainSim.stopArr[i].numPeople() + " currently at Stop " + i);
         }
     }
 
@@ -31,7 +31,7 @@ public class Statistics {
 
 
         //Add Exited Passenger to PassengerArray for data collection
-        if ((passengersProcessed - 1 > passengerArray.length)) { //Check to see if passengerArray needs to be expanded
+        if ((passengersProcessed - 1 >= passengerArray.length)) { //Check to see if passengerArray needs to be expanded
             //Create placeholder array with double size for more values,
             //copy orig array values to it as a placeholder
             //set orig array to the placeHolder, now have double the room
@@ -82,7 +82,8 @@ public class Statistics {
         System.out.println("Number of Passengers Processed: " + passengersProcessed);
         System.out.println("Average Passenger Wait Time: " + collectiveAvgTimeWaited);
         //CAN I GET THESE VARIABLES INTO THIS CLASS WITHOUT CALLING THEM INSIDE TRAIN INSTEAD?
-        //System.out.println("Number of trains used: " + numberOfTrains)
-        //System.out.println("Number of cars used: " + numberOfCars);
+        //Yeah, trainArr is static
+        System.out.println("Number of trains used: " + TrainSim.trainArr.length);
+        System.out.println("Number of cars used: " + TrainSim.trainArr[0].getCars());
     }
 }
