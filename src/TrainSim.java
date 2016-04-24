@@ -8,11 +8,15 @@ public class TrainSim {
     static Stop[] stopArr = new Stop[23];
     static Train[] trainArr;
 
+
+
     public static void main(String[] args) {
 
+
         //Vary numberOfTrains, numberOfCars, and The Load
-        int numberOfTrains = 1; //range 1 to 23
+        int numberOfTrains = 10; //range 1 to 23
         int numOfCars = 1; //range 1 to 3
+
 
         //create static train Array
         trainArr = new Train[numberOfTrains];
@@ -180,8 +184,13 @@ public class TrainSim {
             agenda.remove().run();
         }
 
+
+
+        //Statistics Output
         Statistics.displayStats();
-        System.out.println(Statistics.passengersProcessed);
+        Statistics.outputPassengerData();
+        System.out.println("Number of trains used: " + numberOfTrains);
+        System.out.println("Number of cars used: " + numOfCars);
 
     }
 }
