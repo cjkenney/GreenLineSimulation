@@ -55,4 +55,16 @@ public class Passenger {
         System.out.println(this + " Arrival time: " + arrivalTime + " departureStop: " + depart + " destination: " + dest);
     }
 
+    //Added in to analyze passengerArray Data
+    public void printDetailedInfo() {
+        System.out.println("Passenger Info: ");
+        System.out.println("=================");
+        System.out.println("Departure " + getDepartureStop());
+        System.out.println("Arrived at Depart Stop @ " + getArrivalTime());
+        System.out.println("Destination " + getDestination());
+        System.out.println("Arrived at Destination Stop @ " + getFinalTime());
+        System.out.println("Total time waited " + (getFinalTime() - getArrivalTime()));
+        System.out.println("--------------------\n");
+    }
+
 }

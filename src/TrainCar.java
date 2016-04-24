@@ -29,6 +29,7 @@ public class TrainCar {
     }
 
     public Passenger removePassenger(){
+        seatsAvailable++;
         return (Passenger) passQ.remove();
     }
 

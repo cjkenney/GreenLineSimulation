@@ -45,7 +45,7 @@ public class Train {
     public void generateNextStop(){
         //sets next stop. If train is at a turnaround, changes direction and sets next stop accordingly
 
-        //eastbound Trains
+        //westbound Trains
         if (dir == 0){
             if (stop != 0){
                 nextStop --;
@@ -56,7 +56,7 @@ public class Train {
             }
         }
 
-        //westbound Trains
+        //eastbound Trains
         else if (dir == 1){
             if (stop != 22){
                 nextStop++;

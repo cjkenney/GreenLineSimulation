@@ -8,11 +8,15 @@ public class TrainSim {
     static Stop[] stopArr = new Stop[23];
     static Train[] trainArr;
 
+
+
     public static void main(String[] args) {
 
+
         //Vary numberOfTrains, numberOfCars, and The Load
-        int numberOfTrains = 1; //range 1 to 23
-        int numOfCars = 1; //range 1 to 3
+        int numberOfTrains = 14; //range 1 to 23
+        int numOfCars = 2; //range 1 to 3
+
 
         //create static train Array
         trainArr = new Train[numberOfTrains];
@@ -176,12 +180,17 @@ public class TrainSim {
 
 
         //Removes Events
-        while (agenda.getCurrentTime() <= 1000){
+        while (agenda.getCurrentTime() <= 10000){
             agenda.remove().run();
         }
 
-        Statistics.displayStats();
-        System.out.println(Statistics.passengersProcessed);
+
+
+        //Statistics Output
+
+        Statistics.outputPassengerData();
+        System.out.println();
+        Statistics.displayStopStats();
 
     }
 }

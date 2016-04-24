@@ -13,7 +13,7 @@ public class TrainEvent implements Event {
     Stop currentStop;
     int currentStopId;
 
-    int waitModifier = 0;
+    int waitModifier = 0;  //increments by 2 for each Passenger getting off train, 1 for Passenger getting on.
 
     int i;
 
@@ -80,8 +80,11 @@ public class TrainEvent implements Event {
                     waitModifier += 1;
                     numPassenger--;
                 }
-                else if (tempCarArr[i].isFull() && i < tempTrain.getCars()){
-                    i++;
+                else if (tempCarArr[i].isFull()){
+                    System.out.println("TrainCar "+ i + " in Train " + tempTrain+ " is full");
+                    if (i < tempTrain.getCars()){
+                        i++;
+                    }
                 }
             }
         }
@@ -102,8 +105,11 @@ public class TrainEvent implements Event {
                     tempCarArr[i].addPassenger(p);
                     numPassenger--;
                 }
-                else if (tempCarArr[i].isFull() && i < tempTrain.getCars()){
-                    i++;
+                else if (tempCarArr[i].isFull()){
+                    System.out.println("TrainCar "+ i + " in Train " + tempTrain+ " is full");
+                    if (i < tempTrain.getCars()){
+                        i++;
+                    }
                 }
             }
         }
