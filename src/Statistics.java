@@ -217,6 +217,9 @@ public class Statistics {
         //Yeah, trainArr is static
         System.out.println("Number of trains used: " + TrainSim.trainArr.length);
         System.out.println("Number of cars used: " + TrainSim.trainArr[0].getCars());
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
     }
 }
