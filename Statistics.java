@@ -95,7 +95,8 @@ public class Statistics {
         System.out.println("Test Variables: ");
         System.out.println("Number of trains used: " + TrainSim.trainArr.length);
         System.out.println("Number of cars used: " + TrainSim.trainArr[0].getCars());
-        System.out.println("Interval Time: " + TrainSim.stopArr[0].getBaseInterval());
+        System.out.println("Average Interval Time: " + TrainSim.stopArr[0].getBaseInterval());
+        System.out.println("--------");
         System.out.println("Number of Passengers Processed: " + passengersProcessed);
         System.out.println("Minimum Wait Time of Passengers: " + minWaitTime);
         System.out.println("Maximum Wait Time of Passengers: " + maxWaitTime);
